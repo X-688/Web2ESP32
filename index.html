@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIFI上位机</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="intro-panel">
+            <h1>网页WIFI上位机<span class="version">v1.1.0</span></h1>
+            <div class="intro-content">
+                <p class="features">功能：IP地址、端口选择，自定义快捷指令及记忆</p>
+                <p class="copyright">开发：x688</p>
+            </div>
+        </div>
+
+        <div class="settings-panel">
+            <div class="setting-group">
+                <label for="esp32-ip">ESP32 IP 地址：</label>
+                <input type="text" id="esp32-ip" placeholder="输入 ESP32 的 IP 地址">
+            </div>
+
+            <div class="setting-group">
+                <label for="esp32-port">端口号：</label>
+                <input type="text" id="esp32-port" placeholder="输入端口号">
+            </div>
+
+            <button id="connect-btn">连接</button>
+            <button id="disconnect-btn" disabled>断开</button>
+            <span id="port-info"></span>
+        </div>
+        
+        <div class="main-content">
+            <div class="chat-container">
+                <div id="message-container"></div>
+                <div class="input-area">
+                    <textarea id="message-input" placeholder="输入要发送的消息..." rows="1"></textarea>
+                    <button id="send-btn">发送</button>
+                </div>
+            </div>
+            
+            <div class="shortcuts-panel">
+                <div class="shortcuts-header">
+                    <h3>快捷指令</h3>
+                    <button id="add-shortcut-btn" title="添加快捷指令">+</button>
+                </div>
+                <div class="shortcuts-container" id="shortcuts-container">
+                    <!-- 快捷指令将在这里动态添加 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加快捷指令的对话框 -->
+    <div id="shortcut-dialog" class="dialog">
+        <div class="dialog-content">
+            <h3>添加快捷指令</h3>
+            <div class="dialog-form">
+                <div class="form-group">
+                    <label for="shortcut-name">名称：</label>
+                    <input type="text" id="shortcut-name" placeholder="输入快捷指令名称">
+                </div>
+                <div class="form-group">
+                    <label for="shortcut-command">指令：</label>
+                    <input type="text" id="shortcut-command" placeholder="输入要发送的指令">
+                </div>
+                <div class="dialog-buttons">
+                    <button id="save-shortcut-btn">保存</button>
+                    <button id="cancel-shortcut-btn">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
