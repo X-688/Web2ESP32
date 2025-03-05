@@ -7,6 +7,8 @@ const messageContainer = document.getElementById('message-container');
 
 // 快捷指令相关变量
 const SHORTCUTS_STORAGE_KEY = 'serialport_shortcuts';
+const ESP32_IP_STORAGE_KEY = 'esp32_ip';
+const ESP32_PORT_STORAGE_KEY = 'esp32_port';
 const shortcutsContainer = document.getElementById('shortcuts-container');
 const addShortcutBtn = document.getElementById('add-shortcut-btn');
 const shortcutDialog = document.getElementById('shortcut-dialog');
@@ -86,6 +88,11 @@ connectBtn.addEventListener('click', connectWebSocket);
 async function connectWebSocket() {
     const ip = document.getElementById('esp32-ip').value;
     const port = document.getElementById('esp32-port').value;
+    
+    // 保存到本地存储
+    localStorage.setItem(ESP32_IP_STORAGE_KEY, ip);
+    localStorage.setItem(ESP32_PORT_STORAGE_KEY, port);
+
     const url = `ws://${ip}:${port}`;
     console.log(`尝试连接到 WebSocket: ${url}`);
 
@@ -233,6 +240,10 @@ shortcutDialog.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     // 加载快捷指令
     loadShortcuts();
+    
+    // 加载保存的IP和端口
+    document.getElementById('esp32-ip').value = localStorage.getItem(ESP32_IP_STORAGE_KEY) || '';
+    document.getElementById('esp32-port').value = localStorage.getItem(ESP32_PORT_STORAGE_KEY) || '';
 });
 
 // 监听浏览器关闭事件，防止浏览器意外关闭导致WebSocket连接未关闭
