@@ -1,8 +1,8 @@
 #include <WiFi.h>
 #include <WebSocketsServer.h>
 
-const char* ssid = "Xiaomi 12";
-const char* password = "ljl123456.zly";
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PSWD";
 const int webSocketPort = 81;
 
 WebSocketsServer webSocket = WebSocketsServer(webSocketPort);
